@@ -1,0 +1,84 @@
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<entry
+		key="createProduct">
+		INSERT INTO products(product_name, sku, catagery, unit, cost_price,
+		selling_price, quantity, status)
+		VALUES(:productName, :sku, :catagery, :unit, :costPrice, :sellingPrice,
+		:quantity, :status)
+	</entry>
+	
+	<entry
+		key="updateProduct">
+		UPDATE products
+		SET product_name = :productName, sku=:sku, catagery=:catagery,
+		unit=:unit, cost_price=:costPrice, selling_price=:sellingPrice,
+		quantity=:quantity
+		WHERE id = :id
+	</entry>
+	
+	<entry
+		key="deleteProduct">
+		UPDATE products
+		SET  status='DELETED'
+		WHERE id = :id
+	</entry>
+	
+	<entry
+		key="getAllProducts">
+		SELECT id,product_name, sku, catagery, unit, cost_price, selling_price,
+		quantity, status
+		FROM products
+		WHERE status!='DELETED'
+	</entry>
+	
+	<entry
+		key="getProductById">
+		SELECT product_name, sku, catagery, unit, cost_price, selling_price,
+		quantity, status
+		WHERE id=:id
+	</entry>
+	
+	
+	<entry
+		key="createWareHouse">
+		INSERT INTO warehouse(name, code, city, address, status)
+		VALUES(:name, :code, :city, :address, :status)
+	</entry>
+
+
+	<entry
+		key="updateWareHouse">
+		UPDATE warehouse SET name = :name, code=:code,
+		city = :city, address=:address, status=:status, updated_on =
+		CURRENT_TIMESTAMP
+		WHERE id=:id
+	</entry>
+	
+	<entry
+		key="deleteWareHouse">
+		UPDATE warehouse SET status=:status, updated_on =
+		CURRENT_TIMESTAMP
+		WHERE id=:id
+	</entry>
+	
+	
+	<entry
+		key="getAllWareHouses">
+		SELECT id,name, code, city, address, status
+		FROM warehouse
+		where status!='DELETED'
+	</entry>
+	
+	<entry
+		key="getWareHouseById">
+		SELECT id,name, code, city, address, status
+		FROM warehouse
+		where status!='DELETED'
+		AND id =:id
+	</entry>
+	
+	
+	
+</properties>
